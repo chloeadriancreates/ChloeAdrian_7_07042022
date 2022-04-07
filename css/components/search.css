@@ -19,7 +19,7 @@
     border-radius: 0px 5px 5px 0px;
     padding: 18px;
     font-size: calc(32rem / 16);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
 }
 
