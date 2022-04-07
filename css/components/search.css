@@ -1,0 +1,29 @@
+.search {
+    display: flex;
+    width: 100%;
+}
+
+.search_bar {
+    width: 100%;
+    background-color: hsla(0, 0%, 90%, 1);
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+    padding: 24px;
+    font-family: "Lato", sans-serif;
+    font-size: calc(18rem / 16);
+}
+
+.search_button {
+    background-color: hsla(0, 0%, 90%, 1);
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    padding: 18px;
+    font-size: calc(32rem / 16);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.search_button:hover, .search_button:focus {
+    background-color: hsla(6, 81%, 63%, 1);
+    color: white;
+}
