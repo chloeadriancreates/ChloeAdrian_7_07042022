@@ -1,14 +1,20 @@
+/* Top-level variables */
 let recipeArray = [];
+const recipesContainer = document.querySelector(".recipes");
 
-function displayRecipes(recipes) {
-    const recipesContainer = document.querySelector(".recipes");
-
+function createRecipeArray(recipes, newRecipeArray) {
     recipes.map(recipe => {
         const recipeObject = new Recipe(recipe);
-        recipeArray.push(recipeObject);
-        const recipeCard = recipeObject.createCard();
+        newRecipeArray.push(recipeObject);
+    });
+}
+
+function displayRecipes(recipeArray) {
+    recipeArray.map(recipe => {
+        const recipeCard = recipe.createCard();
         recipesContainer.appendChild(recipeCard);
     });
 }
 
-displayRecipes(recipes);
+createRecipeArray(recipes, recipeArray);
+displayRecipes(recipeArray);
