@@ -31,7 +31,7 @@ class Recipe {
         divTime.setAttribute("class", "recipe_time");
 
         const iconTime = document.createElement("span");
-        iconTime.setAttribute("class", "fa_regular fa_clock");
+        iconTime.setAttribute("class", "fa-regular fa-clock");
 
         const textTime = document.createElement("p");
         textTime.setAttribute("class", "recipe_time_text");

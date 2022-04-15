@@ -1,6 +1,17 @@
 .header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     margin: 42px 0px 17px 0px;
+}
+
+.header_logo {
+    width: 50px;
+}
+
+.header_title {
+    font-family: "DM Sans", sans-serif;
+    color: hsla(0, 58%, 56%, 1);
+    font-size: calc(36rem / 16);
 }
