@@ -12,6 +12,7 @@ function textSearch(value, recipes) {
             for (let j = 0; j < recipes[i].ingredients.length; j++) {
                 if(recipes[i].ingredients[j].ingredient.toLowerCase().includes(value.toLowerCase())) {
                     filteredRecipes.push(recipes[i]);
+                    j = recipes[i].ingredients.length;
                 }
             }
             // for (let k = 0; k < recipes[i].utensils.length; k++) {
