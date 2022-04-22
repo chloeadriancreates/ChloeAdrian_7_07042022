@@ -1,3 +1,7 @@
+:root {
+    --flex: none;
+}
+
 .recipes {
     display: flex;
     justify-content: space-between;
@@ -8,7 +12,7 @@
 
 .recipes::after {
     content: "";
-    flex: auto;
+    flex: var(--flex);
 }
 
 .recipe {
@@ -16,10 +20,6 @@
     background-color: hsla(0, 0%, 90%, 1);
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 50px;
-}
-
-.recipe:last-of-type {
-    margin-left: 5%;
 }
 
 .recipe_photo {

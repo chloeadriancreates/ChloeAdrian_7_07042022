@@ -14,6 +14,21 @@ function displayRecipes(recipeArray) {
         const recipeCard = recipe.createCard();
         recipesContainer.appendChild(recipeCard);
     });
+
+    if(recipeArray.length % 3 !== 0) {
+        document.documentElement.style.setProperty('--flex', "auto")
+    } else {
+        document.documentElement.style.setProperty('--flex', "none")
+    }
+
+    if(recipeArray.length % 2 == 0) {
+        recipesContainer.lastChild.style.marginLeft = '5%';
+        if(recipeArray.length % 3 == 0) {
+            document.querySelector('.recipe:nth-last-of-type(2)').style.marginLeft = '5%';
+        }
+    } else {
+        recipesContainer.lastChild.style.marginLeft = '0';
+    }
 }
 
 createRecipeArray(recipes, recipeArray);
