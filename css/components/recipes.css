@@ -76,6 +76,7 @@
 .recipe_ingredient_name {
     display: inline;
     font-weight: 700;
+    font-size: calc(12rem / 16);
 }
 
 .recipe_ingredient_quantity {

@@ -1,0 +1,45 @@
+.tags_selected {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.tag_selected {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag_chip {
+    padding: calc(10rem / 16) calc(20rem / 16);
+    color: white;
+    font-size: calc(14rem / 16);
+    font-weight: 700;
+    border-radius: 5px;
+    margin-right: calc(20rem / 16);
+    margin-bottom: calc(15rem / 16);
+    display: flex;
+    align-items: center;
+}
+
+.ingredient_chip {
+    background-color: hsla(216, 92%, 58%, 1);
+}
+
+.appliance_chip {
+    background-color: hsla(152, 60%, 63%, 1);
+}
+
+.utensil_chip {
+    background-color: hsla(6, 81%, 63%, 1);
+}
+
+.tag_chip_delete {
+    margin-left: calc(10rem / 16);
+    border-radius: 50%;
+    border: 2px solid white;
+    width: calc(20rem / 16);
+    height: calc(20rem / 16);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

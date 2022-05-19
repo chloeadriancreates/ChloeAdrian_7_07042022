@@ -1,5 +1,5 @@
-function deleteCards() {
-    while (recipesContainer.lastChild) {
-        recipesContainer.removeChild(recipesContainer.lastChild);
+function deleteCards(container) {
+    while (container.lastChild) {
+        container.removeChild(container.lastChild);
     }
 }

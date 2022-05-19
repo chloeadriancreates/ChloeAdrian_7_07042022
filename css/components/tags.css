@@ -1,0 +1,77 @@
+.tags {
+    display: flex;
+}
+
+.tag {
+    position: relative;
+}
+
+.tag:not(:last-of-type) {
+    margin-right: calc(20rem / 16);
+}
+
+.ingredients, .appliances, .utensils {
+    width: auto;
+}
+
+.tag_button {
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    font-size: calc(18rem / 16);
+    font-weight: 700;
+    padding: calc(24rem / 16) calc(20rem / 16);
+}
+
+.tag_button_icon {
+    margin-left: calc(35rem / 16);
+}
+
+#ingredient_button {
+    background-color: hsla(216, 92%, 58%, 1);
+}
+
+#appliance_button {
+    background-color: hsla(152, 60%, 63%, 1);
+}
+
+#utensil_button {
+    background-color: hsla(6, 81%, 63%, 1);
+}
+
+.tag_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    padding: calc(20rem / 16);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#ingredient_list {
+    background-color: hsla(216, 92%, 58%, 1);
+    display: none;
+}
+
+#appliance_list {
+    background-color: hsla(152, 60%, 63%, 1);
+    display: none;
+}
+
+#utensil_list {
+    background-color: hsla(6, 81%, 63%, 1);
+    display: none;
+}
+
+.tag_text {
+    color: white;
+    font-size: calc(18rem / 16);
+    width: 30%;
+    padding: 5px;
+}

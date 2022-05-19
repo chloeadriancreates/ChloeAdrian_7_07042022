@@ -21,11 +21,23 @@ function textSearch(value, recipes) {
 input.onkeyup = function() {
     if(input.value.length > 2) {
         const filteredRecipes = textSearch(input.value, recipeArray);
-        deleteCards();
+        deleteCards(recipesContainer);
         displayRecipes(filteredRecipes);
+        const filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient', input.value);
+        displayTags(filteredIngredients, ingredientContainer);
+        const filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
+        displayTags(filteredUtensils, utensilContainer);
+        const filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
+        displayTags(filteredAppliances, applianceContainer);
     } else {
-        deleteCards();
+        deleteCards(recipesContainer);
         displayRecipes(recipeArray);
+        const filteredIngredients = sortTags(recipeArray, 'ingredients', 'ingredient');
+        displayTags(filteredIngredients, ingredientContainer);
+        const filteredUtensils = sortTags(recipeArray, 'utensils', 'utensil');
+        displayTags(filteredUtensils, utensilContainer);
+        const filteredAppliances = sortTags(recipeArray, 'appliance', 'appliance');
+        displayTags(filteredAppliances, applianceContainer);
     }
 }
 
