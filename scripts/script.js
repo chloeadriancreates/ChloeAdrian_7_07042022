@@ -15,9 +15,6 @@ displayRecipes(recipeArray);
 const ingredientList = sortTags(recipeArray, 'ingredients', 'ingredient');
 const utensilList = sortTags(recipeArray, 'utensils', 'utensil');
 const applianceList = sortTags(recipeArray, 'appliance', 'appliance');
-displayTags(ingredientList, ingredientContainer);
-displayTags(utensilList, utensilContainer);
-displayTags(applianceList, applianceContainer);
 
 ingredientButton.onclick = function() { toggleTags('ingredient') };
 utensilButton.onclick = function() { toggleTags('utensil') };
@@ -37,3 +34,5 @@ applianceButton.onclick = function() { toggleTags('appliance') };
 //         applianceContainer.style.display = 'none';
 //     }
 // };
+
+init();

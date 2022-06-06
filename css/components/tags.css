@@ -42,31 +42,32 @@
     background-color: hsla(6, 81%, 63%, 1);
 }
 
-.tag_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+.tag_list_container {
     border-radius: 5px;
     padding: calc(20rem / 16);
     position: absolute;
     top: 0;
     left: 0;
+    display: none;
 }
 
-#ingredient_list {
+#ingredient_list_container {
     background-color: hsla(216, 92%, 58%, 1);
-    display: none;
 }
 
-#appliance_list {
+#appliance_list_container {
     background-color: hsla(152, 60%, 63%, 1);
-    display: none;
 }
 
-#utensil_list {
+#utensil_list_container {
     background-color: hsla(6, 81%, 63%, 1);
-    display: none;
+}
+
+.tag_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .tag_text {
@@ -74,4 +75,31 @@
     font-size: calc(18rem / 16);
     width: 30%;
     padding: 5px;
+    font-weight: 400;
+}
+
+.tag_input_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag_input {
+    font-family: 'Lato', sans-serif;
+    font-size: calc(18rem / 16);
+    font-weight: 700;
+    color: white;
+    background: none;
+    border: none;
+    width: 90%;
+}
+
+.tag_input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.tag_input_icon {
+    color: white; 
+    font-size: calc(20rem / 16);
 }

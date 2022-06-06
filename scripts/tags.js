@@ -36,17 +36,16 @@ function sortTags(recipes, key, type, value) {
 
 function selectTag(tag, selectedArray, allTagsArray, selectedContainer, allTagsContainer) {
     selectedArray.push(tag);
-    displaySelectedTags(selectedArray, selectedContainer);
+    displaySelectedTags(selectedArray, selectedContainer, textSearch);
     const id = allTagsArray.findIndex(element => element == tag);
     allTagsArray.splice(id, 1);
-    displayTags(allTagsArray, allTagsContainer);
+    displayTags(allTagsArray, allTagsContainer, textSearch);
 }
 
-function deleteTag(tag, selectedArray, allTagsArray, container, allTagsContainer) {
+function deleteTag(tag, selectedArray, allTagsArray, container, allTagsContainer, inputValue) {
     const id = selectedArray.findIndex(element => element == tag);
     selectedArray.splice(id, 1);
-    displaySelectedTags(selectedArray, container);
+    displaySelectedTags(selectedArray, container, textSearch);
     allTagsArray.push(tag);
-    displayTags(allTagsArray, allTagsContainer);
+    displayTags(allTagsArray, allTagsContainer, textSearch);
 }
-

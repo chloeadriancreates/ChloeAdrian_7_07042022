@@ -1,13 +1,3 @@
-/* Top-level variables */
-let recipeArray = [];
-const recipesContainer = document.querySelector(".recipes");
-const selectedIngredients = [];
-const selectedAppliances = [];
-const selectedUtensils = [];
-const selectedIngredientsContainer = document.getElementById('ingredient_selected');
-const selectedUtensilsContainer = document.getElementById('utensil_selected');
-const selectedAppliancesContainer = document.getElementById('appliance_selected');
-
 function createRecipeArray(recipes, newRecipeArray) {
     recipes.map(recipe => {
         const recipeObject = new Recipe(recipe);
@@ -27,17 +17,19 @@ function displayRecipes(recipeArray) {
         document.documentElement.style.setProperty('--flex', "none")
     }
 
-    if(recipeArray.length % 2 == 0) {
-        recipesContainer.lastChild.style.marginLeft = '5%';
-        if(recipeArray.length % 3 == 0) {
-            document.querySelector('.recipe:nth-last-of-type(2)').style.marginLeft = '5%';
+    if(recipesContainer.lastChild) {
+        if(recipeArray.length % 2 == 0) {
+            recipesContainer.lastChild.style.marginLeft = '5%';
+            if(recipeArray.length % 3 == 0) {
+                document.querySelector('.recipe:nth-last-of-type(2)').style.marginLeft = '5%';
+            }
+        } else {
+            recipesContainer.lastChild.style.marginLeft = '0';
         }
-    } else {
-        recipesContainer.lastChild.style.marginLeft = '0';
     }
 }
 
-function displayTags(tagArray, container) {
+function displayTags(tagArray, container, func, inputValue) {
     deleteCards(container);
     tagArray.map(tag => {
         const tagText = document.createElement('p');
@@ -46,21 +38,26 @@ function displayTags(tagArray, container) {
         tagText.addEventListener("click", () => {
             switch(container) {
                 case ingredientContainer:
-                    selectTag(tag, selectedIngredients, ingredientList, selectedIngredientsContainer, ingredientContainer);
+                    selectTag(tag, selectedIngredients, filteredIngredients, selectedIngredientsContainer, ingredientContainer);
                     break;
                 case applianceContainer:
-                    selectTag(tag, selectedAppliances, applianceList, selectedAppliancesContainer, applianceContainer);
+                    selectTag(tag, selectedAppliances, filteredAppliances, selectedAppliancesContainer, applianceContainer);
                     break;
                 case utensilContainer:
-                    selectTag(tag, selectedUtensils, utensilList, selectedUtensilsContainer, utensilContainer);
+                    selectTag(tag, selectedUtensils, filteredUtensils, selectedUtensilsContainer, utensilContainer);
                     break;
             }
+            let taggedRecipes;
+            taggedRecipes = func(inputValue, recipeArray);
+            filteredRecipes = taggedRecipes;
+            deleteCards(recipesContainer);
+            displayRecipes(filteredRecipes);
         });
         container.appendChild(tagText);
     })
 }
 
-function displaySelectedTags(tagArray, container) {
+function displaySelectedTags(tagArray, container, func, inputValue) {
     deleteCards(container);
     tagArray.map(tag => {
         const tagChip = document.createElement('div');
@@ -74,24 +71,38 @@ function displaySelectedTags(tagArray, container) {
                 tagChip.classList.add('ingredient_chip');
                 tagChipDelete.addEventListener("click", () => {
                     deleteTag(tag, selectedIngredients, ingredientList, selectedIngredientsContainer, ingredientContainer);
+                    let taggedRecipes;
+                    taggedRecipes = func(inputValue, recipeArray);
+                    filteredRecipes = taggedRecipes;
+                    deleteCards(recipesContainer);
+                    displayRecipes(taggedRecipes);
                 });
                 break;
             case selectedAppliancesContainer:
                 tagChip.classList.add('appliance_chip');
                 tagChipDelete.addEventListener("click", () => {
                     deleteTag(tag, selectedAppliances, applianceList, selectedAppliancesContainer, applianceContainer);
+                    let taggedRecipes;
+                    taggedRecipes = func(inputValue, recipeArray);
+                    filteredRecipes = taggedRecipes;
+                    deleteCards(recipesContainer);
+                    displayRecipes(taggedRecipes);
                 });
                 break;
             case selectedUtensilsContainer:
                 tagChip.classList.add('utensil_chip');
                 tagChipDelete.addEventListener("click", () => {
                     deleteTag(tag, selectedUtensils, utensilList, selectedUtensilsContainer, utensilContainer);
+                    let taggedRecipes;
+                    taggedRecipes = func(inputValue, recipeArray);
+                    filteredRecipes = taggedRecipes;
+                    deleteCards(recipesContainer);
+                    displayRecipes(taggedRecipes);
                 });
                 break;
         }
         tagChip.appendChild(tagChipText);
         tagChip.appendChild(tagChipDelete);
-        console.log(container);
         container.appendChild(tagChip);
     })
 }
@@ -103,27 +114,27 @@ function toggleTags(type) {
 
     switch(type) {
         case 'ingredient':
-            container = ingredientContainer;
-            otherContainer1 = applianceContainer;
-            otherContainer2 = utensilContainer;
+            container = document.getElementById('ingredient_list_container');
+            otherContainer1 = document.getElementById('appliance_list_container');
+            otherContainer2 = document.getElementById('utensil_list_container');
             break;
         case 'appliance':
-            container = applianceContainer;
-            otherContainer1 = ingredientContainer;
-            otherContainer2 = utensilContainer;
+            container = document.getElementById('appliance_list_container');
+            otherContainer1 = document.getElementById('ingredient_list_container');
+            otherContainer2 = document.getElementById('utensil_list_container');
             break;
         case 'utensil':
-            container = utensilContainer;
-            otherContainer1 = applianceContainer;
-            otherContainer2 = ingredientContainer;
+            container = document.getElementById('utensil_list_container');
+            otherContainer1 = document.getElementById('appliance_list_container');
+            otherContainer2 = document.getElementById('ingredient_list_container');
             break;
     }
 
-    if(container.style.display == 'flex') {
+    if(container.style.display == 'block') {
         container.style.display = 'none';
         container.parentElement.style.width = 'auto';
     } else {
-        container.style.display = 'flex';
+        container.style.display = 'block';
         container.parentElement.style.width = '50%';
         otherContainer1.style.display = 'none';
         otherContainer1.parentElement.style.width = 'auto';
