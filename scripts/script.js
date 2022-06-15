@@ -40,13 +40,13 @@ applianceClose.onclick = function() {
 }
 
 document.onclick = function(event) {
-    if(event.target.id !== 'ingredient_list_container' && event.target.id !== 'ingredient_button' && event.target.id !== 'ingredient_close' && event.target.id !== 'ingredient_button_text') {
+    if(event.target.id !== 'ingredient_list_container' && event.target.id !== 'ingredient_button' && event.target.id !== 'ingredient_close') {
         closeTags('ingredient');
     }
-    if(event.target.id !== 'utensil_list_container' && event.target.id !== 'utensil_button' && event.target.id !== 'utensil_close' && event.target.id !== 'utensil_button_text') {
+    if(event.target.id !== 'utensil_list_container' && event.target.id !== 'utensil_button' && event.target.id !== 'utensil_close') {
         closeTags('utensil');
     }
-    if(event.target.id !== 'appliance_list' && event.target.id !== 'appliance_button' && event.target.id !== 'appliance_close' && event.target.id !== 'appliance_button_text') {
+    if(event.target.id !== 'appliance_list' && event.target.id !== 'appliance_button' && event.target.id !== 'appliance_close') {
         closeTags('appliance');
     }
 };
