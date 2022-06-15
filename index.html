@@ -20,7 +20,8 @@
     </header>
     <main>
         <form action="#" class="search">
-            <input type="text" id="search_bar" class="search_bar" placeholder="Rechercher une recette">
+            <label class="form_label" for="recipeSearch">Rechercher une recette</label>
+            <input type="text" id="search_bar" class="search_bar" name="recipeSearch" placeholder="Rechercher une recette">
             <button type="submit" class="search_button">
                 <span class="fa-solid fa-magnifying-glass"></span>
             </button>
@@ -34,11 +35,12 @@
             <div class="tag ingredients">
                 <button id="ingredient_button" class="tag_button">
                     Ingrédients
-                    <i class="tag_button_icon fa-solid fa-chevron-down"></i>
+                    <span class="tag_button_icon fa-solid fa-chevron-down"></span>
                 </button>
                 <div id="ingredient_list_container" class="tag_list_container">
                     <div class="tag_input_container">
-                        <input type="text" id="ingredient_search" class="tag_input" placeholder="Rechercher un ingrédient">
+                        <label class="form_label" for="ingredientSearch">Rechercher un ingrédient</label>
+                        <input type="text" id="ingredient_search" class="tag_input" name="ingredientSearch" placeholder="Rechercher un ingrédient">
                         <button id="ingredient_close" class="tag_input_icon fa-solid fa-chevron-up"></button>
                     </div>
                     <div id="ingredient_list" class="tag_list"></div>
@@ -47,11 +49,12 @@
             <div class="tag appliances">
                 <button id="appliance_button" class="tag_button">
                     Appareils
-                    <i class="tag_button_icon fa-solid fa-chevron-down"></i>
+                    <span class="tag_button_icon fa-solid fa-chevron-down"></span>
                 </button>
                 <div id="appliance_list_container" class="tag_list_container">
                     <div class="tag_input_container">
-                        <input type="text" id="appliance_search" class="tag_input" placeholder="Rechercher un appareil">
+                        <label class="form_label" for="applianceSearch">Rechercher un appareil</label>
+                        <input type="text" id="appliance_search" class="tag_input" name="applianceSearch" placeholder="Rechercher un appareil">
                         <button id="appliance_close" class="tag_input_icon fa-solid fa-chevron-up"></button>
                     </div>
                     <div id="appliance_list" class="tag_list"></div>
@@ -60,11 +63,12 @@
             <div class="tag utensils">
                 <button id="utensil_button" class="tag_button">
                     Ustensiles
-                    <i class="tag_button_icon fa-solid fa-chevron-down"></i>
+                    <span class="tag_button_icon fa-solid fa-chevron-down"></span>
                 </button>
                 <div id="utensil_list_container" class="tag_list_container">
                     <div class="tag_input_container">
-                        <input type="text" id="utensil_search" class="tag_input" placeholder="Rechercher un ustensile">
+                        <label class="form_label" for="utensilSearch">Rechercher un ustensile</label>
+                        <input type="text" id="utensil_search" class="tag_input" name="utensilSearch" placeholder="Rechercher un ustensile">
                         <button id="utensil_close" class="tag_input_icon fa-solid fa-chevron-up"></button>
                     </div>
                     <div id="utensil_list" class="tag_list"></div>

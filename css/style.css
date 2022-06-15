@@ -24,3 +24,8 @@ button {
     box-shadow: none;
     text-align: left;
 }
+
+.form_label {
+    opacity: 0;
+    position: absolute;
+}
