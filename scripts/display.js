@@ -177,6 +177,33 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
     })
 }
 
+function closeTags(type) {
+    let container;
+    let otherContainer1;
+    let otherContainer2;
+
+    switch(type) {
+        case 'ingredient':
+            container = document.getElementById('ingredient_list_container');
+            otherContainer1 = document.getElementById('appliance_list_container');
+            otherContainer2 = document.getElementById('utensil_list_container');
+            break;
+        case 'appliance':
+            container = document.getElementById('appliance_list_container');
+            otherContainer1 = document.getElementById('ingredient_list_container');
+            otherContainer2 = document.getElementById('utensil_list_container');
+            break;
+        case 'utensil':
+            container = document.getElementById('utensil_list_container');
+            otherContainer1 = document.getElementById('appliance_list_container');
+            otherContainer2 = document.getElementById('ingredient_list_container');
+            break;
+    }
+
+    container.style.display = 'none';
+    container.parentElement.style.width = 'auto';
+}
+
 function toggleTags(type) {
     let container;
     let otherContainer1;

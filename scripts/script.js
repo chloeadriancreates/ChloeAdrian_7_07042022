@@ -39,19 +39,24 @@ applianceClose.onclick = function() {
     toggleTags('appliance');
 }
 
-// document.onclick = function(event){
-//     if(event.target.id !== 'ingredient_list' && event.target.id !== 'ingredient_button' && ingredientContainer.style.display == 'flex') {
-//         console.log(ingredientContainer.style.display);
-//         ingredientContainer.style.display = 'none';
-//     }
-//     if(event.target.id !== 'utensil_list' && event.target.id !== 'utensil_button' && utensilContainer.style.display == 'flex') {
-//         console.log(utensilContainer.style.display);
-//         utensilContainer.style.display = 'none';
-//     }
-//     if(event.target.id !== 'appliance_list' && event.target.id !== 'appliance_button' && applianceContainer.style.display == 'flex') {
-//         console.log(applianceContainer.style.display);
-//         applianceContainer.style.display = 'none';
-//     }
-// };
+document.onclick = function(event) {
+    if(event.target.id !== 'ingredient_list_container' && event.target.id !== 'ingredient_button' && event.target.id !== 'ingredient_close' && event.target.id !== 'ingredient_button_text') {
+        closeTags('ingredient');
+    }
+    if(event.target.id !== 'utensil_list_container' && event.target.id !== 'utensil_button' && event.target.id !== 'utensil_close' && event.target.id !== 'utensil_button_text') {
+        closeTags('utensil');
+    }
+    if(event.target.id !== 'appliance_list' && event.target.id !== 'appliance_button' && event.target.id !== 'appliance_close' && event.target.id !== 'appliance_button_text') {
+        closeTags('appliance');
+    }
+};
+
+document.onkeydown = function(event) {
+    if(event.code == "Escape") {
+        closeTags('ingredient');
+        closeTags('utensil');
+        closeTags('appliance');
+    }
+}
 
 init();
