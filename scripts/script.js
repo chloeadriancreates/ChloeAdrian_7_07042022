@@ -4,6 +4,9 @@ const applianceContainer = document.getElementById('appliance_list');
 const ingredientButton = document.getElementById('ingredient_button');
 const utensilButton = document.getElementById('utensil_button');
 const applianceButton = document.getElementById('appliance_button');
+const ingredientClose = document.getElementById('ingredient_close');
+const utensilClose = document.getElementById('utensil_close');
+const applianceClose = document.getElementById('appliance_close');
 
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -16,9 +19,25 @@ const ingredientList = sortTags(recipeArray, 'ingredients', 'ingredient');
 const utensilList = sortTags(recipeArray, 'utensils', 'utensil');
 const applianceList = sortTags(recipeArray, 'appliance', 'appliance');
 
-ingredientButton.onclick = function() { toggleTags('ingredient') };
-utensilButton.onclick = function() { toggleTags('utensil') };
-applianceButton.onclick = function() { toggleTags('appliance') };
+ingredientButton.onclick = function() { 
+    toggleTags('ingredient') 
+};
+utensilButton.onclick = function() { 
+    toggleTags('utensil') 
+};
+applianceButton.onclick = function() { 
+    toggleTags('appliance') 
+};
+
+ingredientClose.onclick = function() {
+    toggleTags('ingredient');
+}
+utensilClose.onclick = function() {
+    toggleTags('utensil');
+}
+applianceClose.onclick = function() {
+    toggleTags('appliance');
+}
 
 // document.onclick = function(event){
 //     if(event.target.id !== 'ingredient_list' && event.target.id !== 'ingredient_button' && ingredientContainer.style.display == 'flex') {

@@ -102,4 +102,7 @@
 .tag_input_icon {
     color: white; 
     font-size: calc(20rem / 16);
+    border: none;
+    background: none;
+    box-shadow: none;
 }

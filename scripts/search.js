@@ -20,17 +20,6 @@ function textSearch(value, recipes) {
     let filteredRecipes = [];
 
     recipes.map(recipe => {
-        if(value) {
-            if(recipe.name.toLowerCase().includes(value.toLowerCase()) || 
-            recipe.description.toLowerCase().includes(value.toLowerCase())) {
-                filteredRecipes.push(recipe);
-            } else {
-                if(recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(value.toLowerCase()))) {
-                    filteredRecipes.push(recipe);
-                }
-            }
-        }
-
         const selectedTags = [];
         selectedIngredients.map((selectedIngredient) => {
             selectedTags.push({
@@ -72,7 +61,29 @@ function textSearch(value, recipes) {
             })
 
             if(counter == length) {
-                filteredRecipes.push(recipe);
+                if(value) {
+                    if(recipe.name.toLowerCase().includes(value.toLowerCase()) || 
+                    recipe.description.toLowerCase().includes(value.toLowerCase())) {
+                        filteredRecipes.push(recipe);
+                    } else {
+                        if(recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(value.toLowerCase()))) {
+                            filteredRecipes.push(recipe);
+                        }
+                    }
+                } else {
+                    filteredRecipes.push(recipe);
+                }
+            }
+        } else {
+            if(value) {
+                if(recipe.name.toLowerCase().includes(value.toLowerCase()) || 
+                recipe.description.toLowerCase().includes(value.toLowerCase())) {
+                    filteredRecipes.push(recipe);
+                } else {
+                    if(recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(value.toLowerCase()))) {
+                        filteredRecipes.push(recipe);
+                    }
+                }
             }
         }
 
@@ -85,19 +96,21 @@ function textSearch(value, recipes) {
 }
 
 input.onkeyup = function() {
+    let value;
     if(input.value.length > 2) {
-        filteredRecipes = textSearch(input.value, recipeArray);
-        deleteCards(recipesContainer);
-        displayRecipes(filteredRecipes);
-        const filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient', input.value);
-        displayTags(filteredIngredients, ingredientContainer, textSearch, input.value);
-        const filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-        displayTags(filteredUtensils, utensilContainer, textSearch, input.value);
-        const filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-        displayTags(filteredAppliances, applianceContainer, textSearch, input.value);
+        value = input.value;
     } else {
-        init();
+        value = null;
     }
+    filteredRecipes = textSearch(value, recipeArray);
+    deleteCards(recipesContainer);
+    displayRecipes(filteredRecipes);
+    filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
+    displayTags(filteredIngredients, ingredientContainer, textSearch, value);
+    filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
+    displayTags(filteredUtensils, utensilContainer, textSearch, value);
+    filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
+    displayTags(filteredAppliances, applianceContainer, textSearch, value);
 }
 
 inputIngredient.onkeyup = function() {
@@ -106,7 +119,6 @@ inputIngredient.onkeyup = function() {
         return currentIngredient.toLowerCase().includes(inputIngredient.value.toLowerCase());
     })
     displayTags(filteredIngredients, ingredientContainer, textSearch, null);
-    console.log(filteredIngredients);
 }
 
 inputUtensil.onkeyup = function() {
@@ -115,7 +127,6 @@ inputUtensil.onkeyup = function() {
         return currentUtensil.toLowerCase().includes(inputUtensil.value.toLowerCase());
     })
     displayTags(filteredUtensils, utensilContainer, textSearch, null);
-    console.log(filteredUtensils);
 }
 
 inputAppliance.onkeyup = function() {
@@ -124,6 +135,5 @@ inputAppliance.onkeyup = function() {
         return currentAppliance.toLowerCase().includes(inputAppliance.value.toLowerCase());
     })
     displayTags(filteredAppliances, applianceContainer, textSearch, null);
-    console.log(filteredAppliances);
 }
 

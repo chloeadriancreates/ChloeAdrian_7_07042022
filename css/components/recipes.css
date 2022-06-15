@@ -94,3 +94,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.no_recipe_text {
+    font-size: calc(20rem / 16);
+}

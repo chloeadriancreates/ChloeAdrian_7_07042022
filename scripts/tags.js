@@ -1,9 +1,9 @@
 function sortTags(recipes, key, type, value) {
-    const tags = [];
+    let tags = [];
 
     recipes.map(recipe => {
         if(key == 'appliance') {
-            if ((!value || (value && recipe[key].toLowerCase().includes(value.toLowerCase()))) && !tags.includes(recipe[key]))  {
+            if ((!value || (value && recipe[key].toLowerCase().includes(value.toLowerCase()))) && !tags.includes(recipe[key]) && !selectedAppliances.some(selectedAppliance => selectedAppliance.toLowerCase() == recipe[key].toLowerCase())) {
                 tags.push(capitalize(recipe[key]));
             }
         } else {
@@ -12,10 +12,9 @@ function sortTags(recipes, key, type, value) {
                 if(type == 'ingredient') {
                     currentElement = tag.ingredient;
                 }
-    
                 if(value) {
                     if(currentElement.toLowerCase().includes(value.toLowerCase())) {
-                        if (tags.some(pushedTag => pushedTag.toLowerCase() !== currentElement.toLowerCase())) {
+                        if (tags.some(pushedTag => pushedTag.toLowerCase() == currentElement.toLowerCase())) {
                             // console.log(currentElement);
                         } else {
                             tags.push(capitalize(currentElement));
@@ -31,21 +30,35 @@ function sortTags(recipes, key, type, value) {
             })
         }
     });
+
+    tags = tags.sort((a, b) => a.localeCompare(b));
     return tags;
 }
 
 function selectTag(tag, selectedArray, allTagsArray, selectedContainer, allTagsContainer) {
     selectedArray.push(tag);
-    displaySelectedTags(selectedArray, selectedContainer, textSearch);
+    let value;
+    if(input.value.length > 2) {
+        value = input.value;
+    } else {
+        value = null;
+    }
+    displaySelectedTags(selectedArray, selectedContainer, textSearch, value);
     const id = allTagsArray.findIndex(element => element == tag);
     allTagsArray.splice(id, 1);
-    displayTags(allTagsArray, allTagsContainer, textSearch);
 }
 
-function deleteTag(tag, selectedArray, allTagsArray, container, allTagsContainer, inputValue) {
+function deleteTag(tag, selectedArray, allTagsArray, container, allTagsContainer) {
     const id = selectedArray.findIndex(element => element == tag);
     selectedArray.splice(id, 1);
-    displaySelectedTags(selectedArray, container, textSearch);
+    let value;
+    if(input.value.length > 2) {
+        value = input.value;
+    } else {
+        value = null;
+    }
+    displaySelectedTags(selectedArray, container, textSearch, value);
     allTagsArray.push(tag);
+    allTagsArray = allTagsArray.sort((a, b) => a.localeCompare(b))
     displayTags(allTagsArray, allTagsContainer, textSearch);
 }
