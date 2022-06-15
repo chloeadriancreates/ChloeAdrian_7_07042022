@@ -13,17 +13,13 @@ function sortTags(recipes, key, type, value) {
                     currentElement = tag.ingredient;
                 }
                 if(value) {
-                    if(currentElement.toLowerCase().includes(value.toLowerCase())) {
-                        if (tags.some(pushedTag => pushedTag.toLowerCase() == currentElement.toLowerCase())) {
-                            // console.log(currentElement);
-                        } else {
+                    if(currentElement.toLowerCase().includes(value.toLowerCase()) && !selectedIngredients.some(selectedIngredient => selectedIngredient.toLowerCase() == currentElement.toLowerCase()) && !selectedUtensils.some(selectedUtensil => selectedUtensil.toLowerCase() == currentElement.toLowerCase())) {
+                        if (!tags.some(pushedTag => pushedTag.toLowerCase() == currentElement.toLowerCase())) {
                             tags.push(capitalize(currentElement));
                         }
                     }
                 } else {
-                    if (tags.some(pushedTag => pushedTag.toLowerCase() == currentElement.toLowerCase())) {
-                        // console.log(currentElement);
-                    } else {
+                    if (!tags.some(pushedTag => pushedTag.toLowerCase() == currentElement.toLowerCase()) && !selectedIngredients.some(selectedIngredient => selectedIngredient.toLowerCase() == currentElement.toLowerCase()) && !selectedUtensils.some(selectedUtensil => selectedUtensil.toLowerCase() == currentElement.toLowerCase())) {
                         tags.push(capitalize(currentElement));
                     }
                 }

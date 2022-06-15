@@ -37,9 +37,20 @@ function displayRecipes(recipeArray) {
 function displayTags(tagArray, container, func, inputValue) {
     deleteCards(container);
     tagArray.map(tag => {
-        const tagText = document.createElement('p');
+        const tagText = document.createElement('button');
         tagText.textContent = tag;
         tagText.classList.add('tag_text');
+        switch(container) {
+            case ingredientContainer:
+                tagText.classList.add('ingredient_tag_text');
+                break;
+            case applianceContainer:
+                tagText.classList.add('appliance_tag_text');
+                break;
+            case utensilContainer:
+                tagText.classList.add('utensil_tag_text');
+                break;
+        }
         tagText.addEventListener("click", () => {
             switch(container) {
                 case ingredientContainer:
@@ -67,7 +78,16 @@ function displayTags(tagArray, container, func, inputValue) {
         container.appendChild(tagText);
     })
 
-    if(tagArray.length == 0) {
+    if(container.lastChild) {
+        switch(tagArray.length % 3) {
+            case 2:
+                container.lastChild.style.marginRight = '35%';
+                break;
+            case 1:
+                container.lastChild.style.marginRight = '70%';
+                break;
+        }
+    } else {
         const tagText = document.createElement('p');
         tagText.classList.add('tag_text');
         tagText.style.width = '100%';
@@ -95,7 +115,7 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
         tagChip.classList.add('tag_chip');
         const tagChipText = document.createElement('p');
         tagChipText.textContent = tag;
-        const tagChipDelete = document.createElement('span');
+        const tagChipDelete = document.createElement('button');
         tagChipDelete.classList.add('tag_chip_delete', 'fa-solid', 'fa-xmark');
         let value = inputValue;
         switch(container) {
