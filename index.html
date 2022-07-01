@@ -38,7 +38,7 @@
                 </button>
                 <div id="ingredient_list_container" class="tag_list_container">
                     <div class="tag_input_container">
-                        <label class="form_label" for="ingredient_search">Rechercher un ingrédient</label>
+                        <label id="ingredient_label" class="form_label" for="ingredient_search">Rechercher un ingrédient</label>
                         <input type="text" id="ingredient_search" class="tag_input" placeholder="Rechercher un ingrédient">
                         <button id="ingredient_close" class="tag_input_icon fa-solid fa-chevron-up"></button>
                     </div>
@@ -52,7 +52,7 @@
                 </button>
                 <div id="appliance_list_container" class="tag_list_container">
                     <div class="tag_input_container">
-                        <label class="form_label" for="appliance_search">Rechercher un appareil</label>
+                        <label id="appliance_label" class="form_label" for="appliance_search">Rechercher un appareil</label>
                         <input type="text" id="appliance_search" class="tag_input" placeholder="Rechercher un appareil">
                         <button id="appliance_close" class="tag_input_icon fa-solid fa-chevron-up"></button>
                     </div>
@@ -66,7 +66,7 @@
                 </button>
                 <div id="utensil_list_container" class="tag_list_container">
                     <div class="tag_input_container">
-                        <label class="form_label" for="utensil_search">Rechercher un ustensile</label>
+                        <label id="utensil_label" class="form_label" for="utensil_search">Rechercher un ustensile</label>
                         <input type="text" id="utensil_search" class="tag_input" placeholder="Rechercher un ustensile">
                         <button id="utensil_close" class="tag_input_icon fa-solid fa-chevron-up"></button>
                     </div>
@@ -80,10 +80,12 @@
     <script src="data/recipes.js"></script>
     <script src="classes/Recipe.js"></script>
     <script src="scripts/variables.js"></script>
+    <script src="scripts/capitalize.js"></script>
     <script src="scripts/delete.js"></script>
     <script src="scripts/display.js"></script>
-    <script src="scripts/search.js"></script>
+    <script src="scripts/filter.js"></script>
     <script src="scripts/tags.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/events.js"></script>
+    <script src="scripts/init.js"></script>
 </body>
 </html>

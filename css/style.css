@@ -19,6 +19,7 @@ body {
 }
 
 button {
+    font-family: "Lato", sans-serif;
     border: none;
     background: none;
     box-shadow: none;

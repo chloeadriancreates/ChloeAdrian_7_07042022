@@ -1,16 +1,12 @@
-function createRecipeArray(recipes, newRecipeArray) {
-    recipes.map(recipe => {
-        const recipeObject = new Recipe(recipe);
-        newRecipeArray.push(recipeObject);
-    });
-}
-
+/* Takes in an array of recipes and displays the cards */
 function displayRecipes(recipeArray) {
+    /* Calls the createCard class method on each recipe and appends it to the container */
     recipeArray.map(recipe => {
         const recipeCard = recipe.createCard();
         recipesContainer.appendChild(recipeCard);
     });
 
+    /* Aligns the recipe cards correctly depending on how many there are on the last line */
     if(recipeArray.length % 3 !== 0) {
         document.documentElement.style.setProperty('--flex', "auto")
     } else {
@@ -27,6 +23,7 @@ function displayRecipes(recipeArray) {
             recipesContainer.lastChild.style.marginLeft = '0';
         }
     } else {
+        /* Creates and displays a component in case there are no recipes in the array */
         const noRecipeText = document.createElement('p');
         noRecipeText.classList.add('no_recipe_text');
         noRecipeText.textContent = 'Désolé, aucune recette ne correspond à cette recherche !';
@@ -34,24 +31,21 @@ function displayRecipes(recipeArray) {
     }
 }
 
+/* Takes in the array of current tags, the container they're meant for, the filterRecipes() function from filter.js and the value from the main search input */
 function displayTags(tagArray, container, func, inputValue) {
+    /* Deletes all existing tags from the container */
     deleteCards(container);
+
+    /* For each tag in the array: */
     tagArray.map(tag => {
+        /* Creates the text element and adds its content */
         const tagText = document.createElement('button');
         tagText.textContent = tag;
         tagText.classList.add('tag_text');
-        switch(container) {
-            case ingredientContainer:
-                tagText.classList.add('ingredient_tag_text');
-                break;
-            case applianceContainer:
-                tagText.classList.add('appliance_tag_text');
-                break;
-            case utensilContainer:
-                tagText.classList.add('utensil_tag_text');
-                break;
-        }
+
+        /* When clicking on the tag: */
         tagText.addEventListener("click", () => {
+            /* Calls the selectTag() function from tags.js with the right category */
             switch(container) {
                 case ingredientContainer:
                     selectTag(tag, selectedIngredients, filteredIngredients, selectedIngredientsContainer, ingredientContainer);
@@ -63,21 +57,27 @@ function displayTags(tagArray, container, func, inputValue) {
                     selectTag(tag, selectedUtensils, filteredUtensils, selectedUtensilsContainer, utensilContainer);
                     break;
             }
+
+            /* Updates the recipes according to the new tag */
             let taggedRecipes;
             taggedRecipes = func(inputValue, recipeArray);
             filteredRecipes = taggedRecipes;
             deleteCards(recipesContainer);
             displayRecipes(filteredRecipes);
+
+            /* Updates the tags based on those new recipes */
             filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-            displayTags(filteredIngredients, ingredientContainer, textSearch, inputValue);
-            filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-            displayTags(filteredUtensils, utensilContainer, textSearch, inputValue);
+            displayTags(filteredIngredients, ingredientContainer, filterRecipes, inputValue);
             filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-            displayTags(filteredAppliances, applianceContainer, textSearch, inputValue);
+            displayTags(filteredAppliances, applianceContainer, filterRecipes, inputValue);
+            filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
+            displayTags(filteredUtensils, utensilContainer, filterRecipes, inputValue);
         });
+
         container.appendChild(tagText);
     })
 
+    /* Aligns the tags correctly depending on how many there are on the last line */
     if(container.lastChild) {
         switch(tagArray.length % 3) {
             case 2:
@@ -88,6 +88,7 @@ function displayTags(tagArray, container, func, inputValue) {
                 break;
         }
     } else {
+        /* Creates and displays a component in case there are no tags in the array */
         const tagText = document.createElement('p');
         tagText.classList.add('tag_text');
         tagText.style.width = '100%';
@@ -103,20 +104,26 @@ function displayTags(tagArray, container, func, inputValue) {
                 type = "ustensile";
                 break;
         }
-        tagText.textContent = `Désolé, aucun ${type} ne correspond à cette recherche!`;
+        tagText.textContent = `Désolé, aucun ${type} ne correspond à cette recherche !`;
         container.appendChild(tagText);
     }
 }
 
+/* Takes in the array of selected tags, the container they're meant for, the filterRecipes() function from filter.js and the value from the main search input */
 function displaySelectedTags(tagArray, container, func, inputValue) {
+    /* Deletes all existing tags from the container */
     deleteCards(container);
+
+    /* For each selected tag in the array: */
     tagArray.map(tag => {
+        /* Creates the chip element and adds its content */
         const tagChip = document.createElement('div');
         tagChip.classList.add('tag_chip');
         const tagChipText = document.createElement('p');
         tagChipText.textContent = tag;
         const tagChipDelete = document.createElement('button');
         tagChipDelete.classList.add('tag_chip_delete', 'fa-solid', 'fa-xmark');
+        
         let value = inputValue;
         switch(container) {
             case selectedIngredientsContainer:
@@ -129,11 +136,11 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
                     deleteCards(recipesContainer);
                     displayRecipes(taggedRecipes);
                     filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-                    displayTags(filteredIngredients, ingredientContainer, textSearch, value);
+                    displayTags(filteredIngredients, ingredientContainer, filterRecipes, value);
                     filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-                    displayTags(filteredUtensils, utensilContainer, textSearch, value);
+                    displayTags(filteredUtensils, utensilContainer, filterRecipes, value);
                     filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-                    displayTags(filteredAppliances, applianceContainer, textSearch, value);
+                    displayTags(filteredAppliances, applianceContainer, filterRecipes, value);
                 });
                 break;
             case selectedAppliancesContainer:
@@ -146,11 +153,11 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
                     deleteCards(recipesContainer);
                     displayRecipes(taggedRecipes);
                     filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-                    displayTags(filteredIngredients, ingredientContainer, textSearch, value);
+                    displayTags(filteredIngredients, ingredientContainer, filterRecipes, value);
                     filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-                    displayTags(filteredUtensils, utensilContainer, textSearch, value);
+                    displayTags(filteredUtensils, utensilContainer, filterRecipes, value);
                     filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-                    displayTags(filteredAppliances, applianceContainer, textSearch, value);
+                    displayTags(filteredAppliances, applianceContainer, filterRecipes, value);
                 });
                 break;
             case selectedUtensilsContainer:
@@ -163,11 +170,11 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
                     deleteCards(recipesContainer);
                     displayRecipes(taggedRecipes);
                     filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-                    displayTags(filteredIngredients, ingredientContainer, textSearch, value);
+                    displayTags(filteredIngredients, ingredientContainer, filterRecipes, value);
                     filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-                    displayTags(filteredUtensils, utensilContainer, textSearch, value);
+                    displayTags(filteredUtensils, utensilContainer, filterRecipes, value);
                     filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-                    displayTags(filteredAppliances, applianceContainer, textSearch, value);
+                    displayTags(filteredAppliances, applianceContainer, filterRecipes, value);
                 });
                 break;
         }
@@ -177,26 +184,19 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
     })
 }
 
+/* Closes the appropriate tag container */
 function closeTags(type) {
     let container;
-    let otherContainer1;
-    let otherContainer2;
 
     switch(type) {
         case 'ingredient':
             container = document.getElementById('ingredient_list_container');
-            otherContainer1 = document.getElementById('appliance_list_container');
-            otherContainer2 = document.getElementById('utensil_list_container');
             break;
         case 'appliance':
             container = document.getElementById('appliance_list_container');
-            otherContainer1 = document.getElementById('ingredient_list_container');
-            otherContainer2 = document.getElementById('utensil_list_container');
             break;
         case 'utensil':
             container = document.getElementById('utensil_list_container');
-            otherContainer1 = document.getElementById('appliance_list_container');
-            otherContainer2 = document.getElementById('ingredient_list_container');
             break;
     }
 
@@ -204,6 +204,7 @@ function closeTags(type) {
     container.parentElement.style.width = 'auto';
 }
 
+/* Toggles the appropriate tag container between open and closed */
 function toggleTags(type) {
     let container;
     let otherContainer1;
@@ -227,6 +228,7 @@ function toggleTags(type) {
             break;
     }
 
+    /* When a tag container is open, the width of its parent container (that also contains the toggle button) is 50% – when it is closed, its width is put back to auto so the buttons align correctly and aren't too wide */
     if(container.style.display == 'block') {
         container.style.display = 'none';
         container.parentElement.style.width = 'auto';
