@@ -66,12 +66,7 @@ function displayTags(tagArray, container, func, inputValue) {
             displayRecipes(filteredRecipes);
 
             /* Updates the tags based on those new recipes */
-            filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-            displayTags(filteredIngredients, ingredientContainer, filterRecipes, inputValue);
-            filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-            displayTags(filteredAppliances, applianceContainer, filterRecipes, inputValue);
-            filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-            displayTags(filteredUtensils, utensilContainer, filterRecipes, inputValue);
+            updateTags();
         });
 
         container.appendChild(tagText);
@@ -135,12 +130,7 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
                     filteredRecipes = taggedRecipes;
                     deleteCards(recipesContainer);
                     displayRecipes(taggedRecipes);
-                    filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-                    displayTags(filteredIngredients, ingredientContainer, filterRecipes, value);
-                    filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-                    displayTags(filteredUtensils, utensilContainer, filterRecipes, value);
-                    filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-                    displayTags(filteredAppliances, applianceContainer, filterRecipes, value);
+                    updateTags();
                 });
                 break;
             case selectedAppliancesContainer:
@@ -152,12 +142,7 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
                     filteredRecipes = taggedRecipes;
                     deleteCards(recipesContainer);
                     displayRecipes(taggedRecipes);
-                    filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-                    displayTags(filteredIngredients, ingredientContainer, filterRecipes, value);
-                    filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-                    displayTags(filteredUtensils, utensilContainer, filterRecipes, value);
-                    filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-                    displayTags(filteredAppliances, applianceContainer, filterRecipes, value);
+                    updateTags();
                 });
                 break;
             case selectedUtensilsContainer:
@@ -169,12 +154,7 @@ function displaySelectedTags(tagArray, container, func, inputValue) {
                     filteredRecipes = taggedRecipes;
                     deleteCards(recipesContainer);
                     displayRecipes(taggedRecipes);
-                    filteredIngredients = sortTags(filteredRecipes,'ingredients', 'ingredient');
-                    displayTags(filteredIngredients, ingredientContainer, filterRecipes, value);
-                    filteredUtensils = sortTags(filteredRecipes, 'utensils', 'utensil');
-                    displayTags(filteredUtensils, utensilContainer, filterRecipes, value);
-                    filteredAppliances = sortTags(filteredRecipes, 'appliance', 'appliance');
-                    displayTags(filteredAppliances, applianceContainer, filterRecipes, value);
+                    updateTags();
                 });
                 break;
         }
