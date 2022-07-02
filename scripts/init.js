@@ -6,22 +6,17 @@ function createRecipeArray(recipes, newRecipeArray) {
     });
 }
 
-/* Updates tags */
-function updateTags() {
+/* Initializes recipes and tags */
+function init() {
+    createRecipeArray(recipes, recipeArray);
+    filteredRecipes = recipeArray;
+    displayRecipes(filteredRecipes);
     filteredIngredients = sortTags(recipeArray, 'ingredients', 'ingredient');
     displayTags(filteredIngredients, ingredientContainer, filterRecipes);
     filteredUtensils = sortTags(recipeArray, 'utensils', 'utensil');
     displayTags(filteredUtensils, utensilContainer, filterRecipes);
     filteredAppliances = sortTags(recipeArray, 'appliance', 'appliance');
     displayTags(filteredAppliances, applianceContainer, filterRecipes);
-}
-
-/* Initializes recipes and tags */
-function init() {
-    createRecipeArray(recipes, recipeArray);
-    filteredRecipes = recipeArray;
-    displayRecipes(filteredRecipes);
-    updateTags();
 }
 
 init();
