@@ -25,7 +25,7 @@ function filterRecipes(value, recipes) {
 
     /* For each recipe: */
     recipes.map(recipe => {
-        /* If no tags are selected: */
+        /* If some tags are selected: */
         if(selectedTags.length > 0) {
             const length = selectedTags.length;
             let counter = 0;
